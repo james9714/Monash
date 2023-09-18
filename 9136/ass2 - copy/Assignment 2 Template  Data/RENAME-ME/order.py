@@ -21,7 +21,7 @@ class Order:
 		for i in range(1,len(random_str),2):
 			random_str[i] = random_str[i].upper()
 
-		str_convert_num = [(ord(v)**2)%7 for v in random_str]
+		str_convert_num = [(ord(v)**2)%9 for v in random_str]
 
 		str_1 = "~!@#$%^&*"
 		symbol_res = ''
