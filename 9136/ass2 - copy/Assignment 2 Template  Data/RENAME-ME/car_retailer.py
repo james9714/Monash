@@ -1,5 +1,7 @@
 from retailer import Retailer
 from car import Car
+from order import Order
+import random
 
 class CarRetailer(Retailer):
 	def __init__(self, retailer_id=12345678, retailer_name='', carretailer_address='', carretailer_business_hour=(6,11),carretailer_stock=[]):
@@ -113,4 +115,49 @@ class CarRetailer(Retailer):
 		return True
 	
 	# 2.3.9
+	def get_stock_by_cartype(self,car_types_list):
+		find_list=[]
+		car_obj_list = self.get_all_stock()
+		for type in car_types_list:
+			for car in car_obj_list:
+				if type == car.car_type:
+					find_list.append(car)
+		return find_list
 	
+	def get_stock_by_licence_type(self,licence_type):
+		car_obj_list = self.get_all_stock()
+		match_list=[]
+		if licence_type == 'P':
+			for car in car_obj_list:
+				if car.Car().probationary_licence_prohibited_vehicle():
+					pass
+				else:
+					match_list.append(car)
+		else:
+			match_list = car_obj_list
+		
+		return match_list
+	
+	def car_recommendation(self):
+		car_obj_list = self.get_all_stock()
+		random_car = random.choice(car_obj_list)
+		return random_car
+	
+	def create_order(self,car_code):
+		car_obj_list = self.get_all_stock()
+		new_car_code_list = []
+		for car in car_obj_list:
+			if car.car_code != car_code:
+				new_car_code_list.append(car.car_code)
+			else:
+				self.remove_from_stock(car_code)
+
+				order_id = Order().generate_order_id(car_code)
+				retailer = Retailer(self.retailer_id,self.retailer_name)
+				order_creation_time = order_id[-10:]
+				order_obj = Order(order_id, car, retailer, order_creation_time)
+
+		self.carretailer_stock = new_car_code_list
+
+		return order_obj
+		
