@@ -1,3 +1,3 @@
-88727858, dLrIrEaovi, Wellington Rd Clayton, VIC3168, (8.8, 14.2), ['BY962504, zSyOgLqCHc, 7, 262, 2422, RWD', 'MF852547, RYjEUsOSQa, 6, 193, 2640, AWD', 'ZK215141, TKdjbRaLvPi, 15, 248, 2708, AWD', 'MD735325, imGniJhZOMg, 14, 140, 2279, AWD']
-26849228, MnWpvvwwOu, Wellington Rd Clayton, VIC3168, (11.1, 13.4), ['LN807267, pnXfiQAbaG, 20, 222, 2180, RWD', 'DF763895, mQhDqmMAKmlxLeZmXeM, 20, 174, 2507, RWD', 'KX569985, fmTfzyROdCens, 20, 187, 1526, FWD', 'CI501910, lQZahqBaOKkeaA, 18, 220, 1743, FWD']
-97167616, KQTXjYQcOU, Clayton Rd Mount Waverley, VIC3170, (9.6, 16.5), ['NT223476, WwatgvkdzAR, 20, 182, 1566, RWD', 'QF455435, DuzxyJcwCV, 6, 145, 2800, AWD', 'LG061491, UxHUqMARNJN, 9, 169, 2360, RWD']
+79935064, CarMax, Southern Cross Station Docklands, VIC3008, (9, 17), ['BA201493, Toyota, 4, 250, 4000, FWD', 'AA511063, Chevrolet, 5, 200, 4500, FWD', 'DD706549, BMW, 4, 150, 4500, RWD', 'AD422347, BMW, 7, 300, 4000, FWD']
+69268776, Carvana, 151 Whitehorse Rd Blackburn, VIC3130, (10, 20), ['EE982802, Toyota, 5, 300, 3500, AWD', 'EB791685, Ford, 5, 300, 3000, FWD', 'CB561887, Ford, 4, 150, 4500, RWD', 'CE827550, Toyota, 4, 150, 3000, AWD']
+79382456, Vroom, 2137 Princes Hwy Clayton, VIC3168, (8, 22), ['EA373036, Chevrolet, 4, 300, 4000, AWD', 'EA923245, Ford, 4, 150, 3500, FWD', 'DB069988, BMW, 7, 200, 4500, AWD', 'DC201865, Toyota, 5, 250, 3000, RWD']

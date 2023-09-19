@@ -13,7 +13,7 @@ class Car:
 	
 	def probationary_licence_prohibited_vehicle(self):
 		# use math ceil function to round up the value
-		if math.ceil(self.car_horsepower/self.car_weight)*1000 > 130:
+		if math.ceil(int(self.car_horsepower)/int(self.car_weight)*1000) > 130:
 			# if the reuslt is largger than 130 return True
 			return True
 		else:

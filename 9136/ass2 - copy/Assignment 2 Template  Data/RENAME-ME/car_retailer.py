@@ -34,7 +34,7 @@ class CarRetailer(Retailer):
 	def is_operating(self, cur_hour):
 		# the first element in the tuple is opening time
 		# the second element in the tuple is closing time
-		if cur_hour >= self.carretailer_business_hour[0] and cur_hour <= self.carretailer_business_hour[1]:
+		if cur_hour >= int(self.carretailer_business_hour[0]) and cur_hour < int(self.carretailer_business_hour[1]):
 			return True
 		else:
 			return False
@@ -43,9 +43,11 @@ class CarRetailer(Retailer):
 		with open('..\data\stock.txt','r',encoding='utf-8') as f:
 			data = f.readlines()
 		data = [x.strip().split(', ') for x in data]
+
+		car_info_list = []
 		for line in data:
 			line_id = line[0]
-			if int(line_id) == self.retailer_id:
+			if int(line_id) == int(self.retailer_id):
 				temp = [i.strip("\[\]\'") for i in line[6:]]
 				# the logic is similar with the load_current_stock function
 				# but the difference is we need get all information of the car
@@ -54,7 +56,7 @@ class CarRetailer(Retailer):
 		car_obj_list = []
 		# after get the car informartion, transfer it to object and save in a list
 		for car_info in car_info_list:
-			car_obj_list.append(Car(car_info[0], car_info[1],int(car_info[2]), int(car_info[3]), car_info[4], car_info[5]))
+			car_obj_list.append(Car(car_info[0], car_info[1],int(car_info[2]), int(car_info[3]), int(car_info[4]), car_info[5]))
 		
 		return car_obj_list
 
@@ -68,18 +70,24 @@ class CarRetailer(Retailer):
 			data = f.readlines()
 		data = [x.strip().split(', ') for x in data]
 
+		# Set a flag to record if car_code be removed
 		flag = False
 		for idx in range(len(data)):
 			line_id = data[idx][0]
-			if int(line_id) == self.retailer_id:
+			# Use id to locate line number
+			if int(line_id) == int(self.retailer_id):
 				temp = [i.strip("\[\]\'") for i in data[idx][6:]]
 				new_car_list = []
+				# six steps include one car information
 				for i in range(0,len(temp),6):
 					if temp[i] == car_code:
+						# if removed, turn flag to True
 						flag = True
 					else:
+						# store other cars info
 						car_info = ', '.join(temp[i:i+6])
 						new_car_list.append(car_info)
+				# update the line
 				data[idx] = data[idx][:6] + str(new_car_list).split(', ')
 
 		with open('..\data\stock.txt','w',encoding='utf-8') as f:
@@ -90,7 +98,8 @@ class CarRetailer(Retailer):
 
 	# 2.3.8
 	def add_to_stock(self, car_obj):
-		if car_obj.car_code not in self.carretailer_stock:
+		# if the car_obj already in the carretailer stock, return False
+		if car_obj.car_code in self.carretailer_stock:
 			return False
 		
 		with open('..\data\stock.txt','r',encoding='utf-8') as f:
@@ -99,14 +108,16 @@ class CarRetailer(Retailer):
 
 		for idx in range(len(data)):
 			line_id = data[idx][0]
-			if int(line_id) == self.retailer_id:
+			if int(line_id) == int(self.retailer_id):
 				new_car_list = []
 				temp = [i.strip("\[\]\'") for i in data[idx][6:]]
 				for i in range(0,len(temp),6):
 					car_info = ', '.join(temp[i:i+6])
 					new_car_list.append(car_info)
-				new_car = ', '.join([car_obj.car_code, car_obj.car_name, str(car_obj.car_capacity), str(car_obj.car_horsepower), str(car_obj.car_weight), car_obj.car_type])
+				# get the attribute of the Car Object and convert it to a sting, add it to the  existing list
+				new_car = ', '.join([car_obj.car_code, car_obj.car_name, int(car_obj.car_capacity), int(car_obj.car_horsepower), int(car_obj.car_weight), car_obj.car_type])
 				new_car_list.append(new_car)
+				# uodate the line
 				data[idx] = data[idx][:6] + str(new_car_list).split(', ')
 
 		with open('..\data\stock.txt','w',encoding='utf-8') as f:
@@ -118,8 +129,10 @@ class CarRetailer(Retailer):
 	def get_stock_by_cartype(self,car_types_list):
 		find_list=[]
 		car_obj_list = self.get_all_stock()
+		# iterate the type list and car object list
 		for type in car_types_list:
 			for car in car_obj_list:
+				# if the type is same, save it to find list
 				if type == car.car_type:
 					find_list.append(car)
 		return find_list
@@ -129,7 +142,8 @@ class CarRetailer(Retailer):
 		match_list=[]
 		if licence_type == 'P':
 			for car in car_obj_list:
-				if car.Car().probationary_licence_prohibited_vehicle():
+				# if boolen value is True means the P licence driver couldn't drive the car
+				if car.probationary_licence_prohibited_vehicle():
 					pass
 				else:
 					match_list.append(car)
@@ -151,13 +165,15 @@ class CarRetailer(Retailer):
 				new_car_code_list.append(car.car_code)
 			else:
 				self.remove_from_stock(car_code)
-
 				order_id = Order().generate_order_id(car_code)
 				retailer = Retailer(self.retailer_id,self.retailer_name)
 				order_creation_time = order_id[-10:]
 				order_obj = Order(order_id, car, retailer, order_creation_time)
-
+				line = [order_id,car.car_code,self.retailer_id,order_creation_time]
 		self.carretailer_stock = new_car_code_list
 
+		
+		with open('../data/order.txt', 'a', encoding='utf-8') as f:
+			f.write(', '.join(line)+'\n')
 		return order_obj
 		
