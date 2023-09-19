@@ -1,3 +1,3 @@
-63755320, CarMax, Southern Cross Station Docklands, VIC3008, (9, 17), ['CB089539, Toyota, 4, 300, 4500, AWD', 'BC574175, Honda, 5, 200, 3500, RWD', 'DB641749, Toyota, 5, 250, 3000, FWD', 'ED318100, Volvo, 5, 250, 4000, FWD']
-61861920, Carvana, 151 Whitehorse Rd Blackburn, VIC3130, (10, 20), ['EB251445, Toyota, 7, 200, 4000, RWD', 'DD530500, Mercedes, 5, 150, 4000, RWD', 'AC012952, Ford, 4, 300, 4000, RWD', 'CD658599, Toyota, 4, 200, 3500, RWD']
-50225192, Vroom, 2137 Princes Hwy Clayton, VIC3168, (8, 22), ['DA789464, BMW, 4, 250, 3500, AWD', 'DD031586, Volvo, 5, 300, 3000, RWD', 'BD955050, Volvo, 7, 150, 3000, RWD', 'ED239966, Honda, 7, 200, 4000, AWD']
+27913040, CarMax, Southern Cross Station Docklands, VIC3008, (9, 17), ['BC507177, BMW, 7, 250, 4500, AWD', 'EE746842, Toyota, 4, 200, 3500, RWD', 'BA128331, BMW, 5, 150, 3000, FWD', 'DA353051, Toyota, 5, 250, 4000, AWD']
+61770219, Carvana, 151 Whitehorse Rd Blackburn, VIC3130, (10, 20), ['EE457407, Toyota, 7, 200, 3500, AWD', 'DE061395, BMW, 4, 150, 4500, RWD', 'BB098747, Volvo, 7, 150, 4000, AWD', 'AB845224, Honda, 5, 200, 4500, FWD']
+54106334, Vroom, 2137 Princes Hwy Clayton, VIC3168, (8, 22), ['CA738178, Mercedes, 5, 250, 4000, RWD', 'DE638083, Honda, 5, 250, 3500, AWD', 'DC063055, Mercedes, 7, 200, 3500, AWD', 'BC989937, Toyota, 7, 200, 3500, AWD']

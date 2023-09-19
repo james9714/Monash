@@ -46,9 +46,14 @@ def generate_test_data():
 	retailer_hour =[(9,17),(10,20),(8,22)]
 
 	file = []
+	retailers = []
 	# Generate 3 stock records
 	for i in range(3):
-		stock = [retailer_ids[i], retailer_names[i], \
+		retailer =Retailer(-1,retailer_names[i])
+		retailers.append(retailer)
+		retailer.generate_retailer_id(retailers)
+
+		stock = [retailer.retailer_id, retailer.retailer_name, \
 				retailers_addresses[i], retailer_hour[i], \
 				cars[i*4:i*4+4]]
 		stock = ', '.join([str(v) for v in stock])
