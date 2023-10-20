@@ -11,7 +11,7 @@ class LoadData:
         return np.array(transformed_price)
     
     def reverse_insertion_sort(price_list):
-        price_list = [ int(x) for x in price_list]
+        price_list = [int(x) for x in price_list]
         for i in range(1, len(price_list)):
             value = price_list[i]
             j = i - 1

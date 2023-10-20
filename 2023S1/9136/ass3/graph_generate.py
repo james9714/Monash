@@ -7,13 +7,17 @@ from handle_data import LoadData
 class Graphy:
     def prop_val_distribution(dataframe, suburb, target_currency):
         suburb_list = dataframe['suburb'].unique()
-        if suburb not in suburb_list and suburb != 'all':
-            print ('Suburb not found, generating graph for all suburbs')
-            suburb = 'all'
+        # 根据suburb筛选数据
+        if suburb in suburb_list:
+            df = dataframe[dataframe['suburb']==suburb].reset_index(drop=True)
+        # 如果suburb为'all'，则使用整个数据集
         elif suburb == 'all':
             df = dataframe
+        # 如果不在列表中，返回提示
         else:
-            df = dataframe[dataframe['suburb']==suburb].reset_index(drop=True)
+            print ('Suburb not found, generating graph for all suburbs')
+            suburb = 'all'
+            df = dataframe
 
         # 去除price为空的数据
         df_price = df.dropna(subset=['price']).reset_index(drop=True)
@@ -39,7 +43,8 @@ class Graphy:
         plt.ylabel('Number of properties')
 
         # 保存图形
-        plt.savefig(suburb + '_property_value_distribution.png')
+        plt.savefig(suburb + '_' + target_currency+ '_distribution.png')
+        plt.close()
 
 
     def sales_trend(dataframe):
@@ -62,3 +67,8 @@ class Graphy:
 
         # 保存图形
         plt.savefig('number_of_properties_sold.png')
+        plt.close()
+
+
+# Graphy.prop_val_distribution(LoadData.extract_property_info('property_information.csv'), 'Clayton', 'AUD')
+# Graphy.sales_trend(LoadData.extract_property_info('property_information.csv'))
